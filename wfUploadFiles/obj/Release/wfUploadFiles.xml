@@ -1,0 +1,328 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+wfUploadFiles
+</name>
+</assembly>
+<members>
+<member name="T:wfUploadFiles.My.Resources.Resources">
+<summary>
+  Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
+</summary>
+</member>
+<member name="P:wfUploadFiles.My.Resources.Resources.ResourceManager">
+<summary>
+  Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
+</summary>
+</member>
+<member name="P:wfUploadFiles.My.Resources.Resources.Culture">
+<summary>
+  Substitui a propriedade CurrentUICulture do thread atual para todas as
+  pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
+</summary>
+</member>
+<member name="T:wfUploadFiles.ERPDD.BO.pedido_pixBO">
+ <summary>
+ Classe BO: Business Objects
+ Modificado: 
+ Criada em 09/07/2010
+ Contato: 
+ </summary>
+</member>
+<member name="M:wfUploadFiles.ERPDD.BO.pedido_pixBO.Insert(System.Int32,wfUploadFiles.ERPDD.VO.Billing)">
+ <summary>
+ Insere os registros do banco e retorna o número de linhas afetadas.
+ </summary>
+ <param name="_id_pedido">id do pedido</param>
+ <param name="_vo">objetos vo do banco</param>
+ <returns>int</returns>
+</member>
+<member name="M:wfUploadFiles.ERPDD.BO.pedido_pixBO.Update(System.Int32,wfUploadFiles.ERPDD.VO.Billing)">
+ <summary>
+ Atualiza os registros do banco e retorna o número de linhas afetadas.
+ </summary>
+ <param name="_id_pedido">id do pedido</param>
+ <param name="_vo">objetos vo do banco</param>
+ <returns>int</returns>
+</member>
+<member name="T:wfUploadFiles.ERPDD.DO.DalHelper">
+ <summary>
+ Classe DO: Data Objects
+ Modificado: ALBERTO ROCHA
+ Criada em 23/01/2020
+ Contato: alberto@blindlux.com.br
+ </summary>
+</member>
+<member name="M:wfUploadFiles.ERPDD.DO.DalHelper.ExecutaQuery(System.String)">
+ <summary>
+ Executa comandos sql e retorna o número de linhas afetadas.
+ </summary>
+ <param name="sSQL">Comando sql</param>
+ <returns>int regAffect</returns>
+ <returns>int regAffect</returns>
+</member>
+<member name="M:wfUploadFiles.ERPDD.DO.DalHelper.GetDataSet(System.String,System.String)">
+ <summary>
+ Retorna um data set apartir de um comando sql
+ </summary>
+ <param name="command">Comando sql</param>
+ <param name="table">Nome da tabela</param>
+ <returns>DataSet oDataSet</returns>
+</member>
+<member name="M:wfUploadFiles.ERPDD.DO.DalHelper.GetDataSetReturn(System.String,System.String)">
+ <summary>
+ Retorna um data set apartir de um comando sql
+ </summary>
+ <param name="command">Comando sql</param>
+ <param name="table">Nome da tabela</param>
+ <returns>DataSet oDataSet</returns>
+</member>
+<member name="M:wfUploadFiles.ERPDD.DO.DalHelper.QueryConsulta(System.String)">
+ <summary>
+ Executa select no _banco
+ </summary>
+ <param name="command"></param>
+ <returns>DataReader oCommand.ExecuteReader()</returns>
+</member>
+<member name="M:wfUploadFiles.ERPDD.DO.DalHelper.CloseConn">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="T:wfUploadFiles.ERPDD.VO.Billing">
+ <summary>
+ Classe que representa os dados enviados para criação ou alteração da cobrança imediata.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.calendar">
+ <summary>
+ Informações a respeito de controle de tempo da cobrança.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.TransactionId">
+ <summary>
+ Identificador da transação.
+ <para>
+ O campo txid, obrigatório, determina o identificador da transação.
+ O objetivo desse campo é ser um elemento que possibilite ao PSP do
+ recebedor apresentar ao usuário recebedor a funcionalidade de conciliação de pagamentos.
+ </para>
+ <para>
+ Na pacs.008, é referenciado como TransactionIdentification ou idConciliacaoRecebedor.
+ </para>
+ <para>
+ Em termos de fluxo de funcionamento, o txid é lido pelo aplicativo do PSP do pagador e,
+ depois de confirmado o pagamento, é enviado para o SPI via pacs.008.
+ Uma pacs.008 também é enviada ao PSP do recebedor, contendo, além de
+ todas as informações usuais do pagamento, o txid. Ao perceber um recebimento dotado de txid,
+ o PSP do recebedor está apto a se comunicar com o usuário recebedor,
+ informando que um pagamento específico foi liquidado.
+ </para>
+ <para>
+ O txid é criado exclusivamente pelo usuário recebedor e está sob sua responsabilidade.
+ O txid, no contexto de representação de uma cobrança, é único por CPF/CNPJ do usuário recebedor.
+ Cabe ao PSP recebedor validar essa regra na API PixPaid.
+ </para>
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.ImageContentQRcode">
+ <summary>
+ Texto da imagem do QR Code para usar no copia/cola.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.Revision">
+ <summary>
+ Revisão da cobrança. Sempre começa em zero. Sempre varia em acréscimos de 1.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.Location">
+ <summary>
+ Localização do payload
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.Debtor">
+ <summary>
+ Identificam o devedor, ou seja, a pessoa ou a instituição a quem a cobrança está endereçada.
+ Não identifica, necessariamente, quem irá efetivamente realizar o pagamento.
+ Um CPF pode ser o devedor de uma cobrança, mas pode acontecer de outro CPF realizar, efetivamente, o pagamento do documento.
+ Não é permitido que o campo devedor.cpf e campo devedor.cnpj estejam preenchidos ao mesmo tempo.
+ Se o campo devedor.cnpj está preenchido, então o campo devedor.cpf não pode estar preenchido, e vice-versa.
+ Se o campo devedor.nome está preenchido, então deve existir ou um devedor.cpf ou um campo devedor.cnpj preenchido.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.Key">
+ <summary>
+ Chave DICT do recebedor
+ <remarks>
+ <para>
+ Formato do campo chave
+ </para>
+ <para>O campo chave, obrigatório, determina a chave PixPaid registrada no DICT que será utilizada para a cobrança.
+ Essa chave será lida pelo aplicativo do PSP do pagador para consulta ao DICT,
+ que retornará a informação que identificará o recebedor da cobrança.
+ </para>
+ <para>
+ Os tipos de chave podem ser: telefone, e-mail, cpf/cnpj ou EVP.
+ </para>
+ <para>
+ O formato das chaves pode ser encontrado na seção "Formatação das chaves do DICT no BR Code"
+ do Manual de Padrões para iniciação do PixPaid(https://www.bcb.gov.br/estabilidadefinanceira/pix).
+ </para>
+ </remarks>
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Billing.PayerRequest">
+ <summary>
+ Solicitação ao pagador
+ <para>
+ O campo solicitacaoPagador, opcional, determina um texto a ser apresentado ao pagador para que
+ ele possa digitar uma informação correlata, em formato livre, a ser enviada ao recebedor.
+ Esse texto será preenchido, na pacs.008, pelo PSP do pagador, no campo RemittanceInformation.
+ O tamanho do campo na pacs.008 está limitado a 140 caracteres.
+ </para>
+ </summary>
+</member>
+<member name="T:wfUploadFiles.ERPDD.VO.PixPaid">
+ <summary>
+ Classe que representa os dados de um pagamento PixPaid.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.EndToEndId">
+ <summary>
+ Id fim a fim da transação
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.TransactionId">
+ <summary>
+ Identificador da transação.
+ <para>
+ O campo txid, obrigatório, determina o identificador da transação.
+ O objetivo desse campo é ser um elemento que possibilite ao PSP do
+ recebedor apresentar ao usuário recebedor a funcionalidade de conciliação de pagamentos.
+ </para>
+ <para>
+ Na pacs.008, é referenciado como TransactionIdentification ou idConciliacaoRecebedor.
+ </para>
+ <para>
+ Em termos de fluxo de funcionamento, o txid é lido pelo aplicativo do PSP do pagador e,
+ depois de confirmado o pagamento, é enviado para o SPI via pacs.008.
+ Uma pacs.008 também é enviada ao PSP do recebedor, contendo, além de
+ todas as informações usuais do pagamento, o txid. Ao perceber um recebimento dotado de txid,
+ o PSP do recebedor está apto a se comunicar com o usuário recebedor,
+ informando que um pagamento específico foi liquidado.
+ </para>
+ <para>
+ O txid é criado exclusivamente pelo usuário recebedor e está sob sua responsabilidade.
+ O txid, no contexto de representação de uma cobrança, é único por CPF/CNPJ do usuário recebedor.
+ Cabe ao PSP recebedor validar essa regra na API PixPaid.
+ </para>
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.Price">
+ <summary>
+ Valor do PixPaid.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.Time">
+ <summary>
+ Horário em que o PixPaid foi processado no PSP.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.InfoPayer">
+ <summary>
+ Informação livre do pagador
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.Payer">
+ <summary>
+ Informações sobre o pagador
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.PixPaid.Devolution">
+ <summary>
+ Dados da devolução
+ </summary>
+</member>
+<member name="T:wfUploadFiles.ERPDD.VO.Payer">
+ <summary>
+ Classe que representa um pagador.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Payer.Cnpj">
+ <summary>
+ CNPJ do devedor, para cobranças de pessoa juridica.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Payer.Cpf">
+ <summary>
+  CPF do devedor, para cobranças de pessoa fisca.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Payer.Name">
+ <summary>
+ Nome do pagador
+ </summary>
+</member>
+<member name="T:wfUploadFiles.ERPDD.VO.Devolution">
+ <summary>
+ Classe que representa uma devolução.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Devolution.Id">
+ <summary>
+ Id gerado pelo cliente para representar unicamente uma devolução
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Devolution.ReturnId">
+ <summary>
+ Id da devolução que transita na PACS004.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Devolution.Price">
+ <summary>
+ Valor a devolver
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Devolution.TimeDevolution">
+ <summary>
+ Horário da devolução
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.Devolution.Status">
+ <summary>
+ Status da devolução.
+ </summary>
+</member>
+<member name="T:wfUploadFiles.ERPDD.VO.TimeDevolution">
+ <summary>
+ Classe que representa os horários da devolução.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.TimeDevolution.Request">
+ <summary>
+ Horário no qual a devolução foi solicitada no PSP.
+ </summary>
+</member>
+<member name="P:wfUploadFiles.ERPDD.VO.TimeDevolution.Liquidation">
+ <summary>
+ Horário no qual a devolução foi liquidada no PSP.
+ </summary>
+</member>
+<member name="F:wfUploadFiles.ERPDD.VO.ReturnStatus.Processing">
+ <summary>
+ Em processamento
+ </summary>
+</member>
+<member name="F:wfUploadFiles.ERPDD.VO.ReturnStatus.Returned">
+ <summary>
+ Devolvido
+ </summary>
+</member>
+<member name="F:wfUploadFiles.ERPDD.VO.ReturnStatus.NotDone">
+ <summary>
+ Não realizado
+ </summary>
+</member>
+</members>
+</doc>
